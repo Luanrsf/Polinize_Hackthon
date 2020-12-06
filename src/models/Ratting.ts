@@ -4,17 +4,20 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
-    ManyToOne,
+    OneToMany,
   } from 'typeorm';
 import ItemGame from './ItemGame';
   
-  @Entity('ratting')
+  @Entity('rattings')
     class Ratting {
       @PrimaryGeneratedColumn('uuid')
       id: string;
     
       @Column()
-      description: "Otimo" | "Razoavel" | "Ruim";
+      description: string;
+
+      @OneToMany(() => ItemGame, itemGame => itemGame.ratting)
+      itemGame: ItemGame
   
       @CreateDateColumn()
       created_at: Date;

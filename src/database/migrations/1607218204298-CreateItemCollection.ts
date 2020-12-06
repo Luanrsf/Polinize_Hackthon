@@ -30,7 +30,7 @@ export default class CreateItemCollection1607218204298 implements MigrationInter
                   {
                     name: 'type',
                     type: 'enum',
-                    enum: ['jogo', 'board-games', 'pererifericos'],
+                    enum: ['jogo', 'board-games', 'perifericos'],
                   },
                   {
                     name: 'picture',

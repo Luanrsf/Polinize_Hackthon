@@ -19,14 +19,14 @@ import ItemGame from './ItemGame';
     @Column()
     email: string;
 
+    @OneToMany(() => ItemGame, itemGame => itemGame.user)
+    itemGame: ItemGame
+
     @Column()
     telNumber: string;
 
     @Column()
     password: string;
-
-    @OneToMany(() => ItemGame, itemGame => itemGame.user)
-    itemGame: ItemGame;
 
     @CreateDateColumn()
     created_at: Date;

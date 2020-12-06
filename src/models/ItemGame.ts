@@ -6,7 +6,6 @@ import {
   UpdateDateColumn,
   JoinColumn,
   ManyToOne,
-  OneToMany,
 } from 'typeorm';
 import Ratting from './Ratting';
 import User from './User';
@@ -27,19 +26,20 @@ class ItemGame {
   picture: string;
 
   @Column()
-  user_id: string;
-  
-  @Column()
-  ratting_id: string;
+  user_id: string
 
   @Column()
+  ratting_id: string
+  
+  @Column()
   description: string;
+
 
   @ManyToOne(() => User, user => user.itemGame, { eager: true })
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @OneToMany(() => Ratting, ratting => ratting)
+  @ManyToOne(() => Ratting, ratting => ratting.itemGame, { eager: true })
   @JoinColumn({ name: 'ratting_id' })
   ratting: Ratting;
 

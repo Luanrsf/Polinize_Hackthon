@@ -6,10 +6,11 @@ import Ratting from '../models/Ratting';
 
 interface Request {
   title: string;
-  type: "console" | "jogo" | "board-games" | "perifericos",
+  type: "console" | "jogo" | "board-games" | "perifericos";
   description: string;
-  user: string,
-  ratting: "Otimo" | "Razoavel" | "Ruim",
+  picture: string;
+  user: string;
+  ratting: string;
 }
 
 class CreateItemGamesService {
@@ -17,6 +18,7 @@ class CreateItemGamesService {
         title,
         type,
         description,
+        picture,
         user,
         ratting,
     }: Request): Promise<ItemGame>{
@@ -26,24 +28,13 @@ class CreateItemGamesService {
 
         const itemGamesRepository = getRepository(ItemGame);
 
-        const currentUser = await usersRepository.findOne({
-            where: { id: user }
-        });
 
-        if (!currentUser){
-            throw new AppError('User does not exists')
-        }
-
-        if (!['console', 'jogo', 'board-games', 'perdifericos'].includes(type)) {
-            throw new AppError('ItemGames type is invalid');
-        }
-
-        if (!['Otimo', 'Razoavel', 'Ruim'].includes(ratting)) {
-            throw new AppError('Ratting is invalid');
-        }
+         const currentUser = await usersRepository.findOne({
+             where: { id: user }
+         });
 
         const checkRattingExists = await rattingsRepository.findOne({
-            where: {description: ratting}
+            where: { description: ratting }
         })
 
         if(!checkRattingExists){
@@ -58,17 +49,18 @@ class CreateItemGamesService {
             where: { description: ratting }
         })
 
-        const itemGames = itemGamesRepository.create({
+        const itemGame = itemGamesRepository.create({
             title,
             type,
             description,
+            picture,
             user: currentUser,
             ratting: getNewlyCreatedRatting,
         })
 
-        await itemGamesRepository.save(itemGames);
+        await itemGamesRepository.save(itemGame)
 
-        return itemGames;
+        return itemGame;
     }
 }
 
