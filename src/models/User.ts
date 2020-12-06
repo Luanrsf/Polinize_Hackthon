@@ -1,11 +1,12 @@
-import { v4 as uuid } from 'uuid';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToMany,
 } from 'typeorm';
+import ItemGame from './ItemGame';
 
 @Entity('users')
   class User {
@@ -19,7 +20,11 @@ import {
     email: string;
 
     @Column()
-    cpf: string;
+    telNumber: string;
+
+    @ManyToMany(() => ItemGame, itemGame => itemGame.user)
+    itemGame: ItemGame;
+  
 
     @Column()
     password: string;
@@ -29,7 +34,6 @@ import {
 
     @UpdateDateColumn()
     updated_at: Date;
-   
   }
   
   export default User;

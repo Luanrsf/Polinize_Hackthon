@@ -1,4 +1,4 @@
-import ItemGame from "../models/itemGame";
+import ItemGame from "../models/ItemGame";
 class ItemGameRepository {
   private itemGame: ItemGame[];
   constructor() {
