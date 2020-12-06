@@ -1,13 +1,9 @@
 import { Router } from "express";
-// import ItemGameRepository from "../repositories/ItemGameRepository";
+import CreateUserService from "../services/CreateUserServices";
+import UserRepository from "../repositories/UserRepository";
 
 const ItemGameRouter = Router();
 
-// const itemGameRepository = new ItemGameRepository();
-// const userRepository = new UserRepository();
+ItemGameRouter.post("/", async (request, response) => {});
 
-ItemGameRouter.get("/", (request, response) => {
-  response.send("Chegou");
-});
-
-export default UserRouter;
+export default ItemGameRouter;

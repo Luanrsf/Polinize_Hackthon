@@ -1,8 +1,10 @@
 import { Router } from "express";
 import userRouter from "./users.routes";
+import itemgGameRouter from "./itemGame.routes";
 
-export const routes = Router();
+const routes = Router();
 
 routes.use("/users", userRouter);
+routes.use("/itemgame", itemgGameRouter);
 
-routes;
+export default routes;
