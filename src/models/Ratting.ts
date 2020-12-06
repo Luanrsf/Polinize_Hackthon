@@ -4,7 +4,7 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
-    ManyToMany,
+    ManyToOne,
   } from 'typeorm';
 import ItemGame from './ItemGame';
   
@@ -14,10 +14,7 @@ import ItemGame from './ItemGame';
       id: string;
     
       @Column()
-      description: string;
-
-      @ManyToMany(() => ItemGame, itemGame => itemGame.ratting)
-      itemGame: ItemGame;
+      description: "Otimo" | "Razoavel" | "Ruim";
   
       @CreateDateColumn()
       created_at: Date;

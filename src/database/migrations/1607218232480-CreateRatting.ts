@@ -16,7 +16,8 @@ export class CreateRatting1607218232480 implements MigrationInterface {
                   },
                   {
                     name: 'description',
-                    type: 'varchar',
+                    type: 'enum',
+                    enum: ['Otimo', 'Razoavel', 'Ruim'],
                   },
                   {
                     name: 'created_at',

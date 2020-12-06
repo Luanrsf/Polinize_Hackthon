@@ -24,7 +24,7 @@ export default class CreateUsers1607200840570 implements MigrationInterface {
                 type: 'varchar',
               },
               {
-                name: 'cpf',
+                name: 'telNumber',
                 type: 'varchar',
               },
               {

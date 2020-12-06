@@ -5,8 +5,8 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   JoinColumn,
+  ManyToOne,
   OneToMany,
-  ManyToMany,
 } from 'typeorm';
 import Ratting from './Ratting';
 import User from './User';
@@ -21,7 +21,7 @@ class ItemGame {
   title: string;
 
   @Column()
-  type: "conosole" | "jogo" | "board-games" | "mod/pererifericos";
+  type: "console" | "jogo" | "board-games" | "perifericos";
 
   @Column()
   picture: string;
@@ -32,17 +32,16 @@ class ItemGame {
   @Column()
   ratting_id: string;
 
-  @OneToMany(() => User, user => user.itemGame, { eager: true })
+  @Column()
+  description: string;
+
+  @ManyToOne(() => User, user => user.itemGame, { eager: true })
   @JoinColumn({ name: 'user_id' })
   user: User;
 
-  @ManyToMany(() => Ratting, ratting => ratting.itemGame, { eager: true })
+  @OneToMany(() => Ratting, ratting => ratting)
   @JoinColumn({ name: 'ratting_id' })
   ratting: Ratting;
-
-
-  @Column()
-  description: string;
 
   @CreateDateColumn()
   created_at: Date;

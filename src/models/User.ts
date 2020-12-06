@@ -4,7 +4,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToMany,
+  OneToMany,
 } from 'typeorm';
 import ItemGame from './ItemGame';
 
@@ -22,12 +22,11 @@ import ItemGame from './ItemGame';
     @Column()
     telNumber: string;
 
-    @ManyToMany(() => ItemGame, itemGame => itemGame.user)
-    itemGame: ItemGame;
-  
-
     @Column()
     password: string;
+
+    @OneToMany(() => ItemGame, itemGame => itemGame.user)
+    itemGame: ItemGame;
 
     @CreateDateColumn()
     created_at: Date;

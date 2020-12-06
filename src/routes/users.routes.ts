@@ -1,20 +1,21 @@
 import { Router } from "express";
 // import UserRepository from "../repositories/UserRepository";
-import CreateUserService from "../services/CreateUserServices";
-import UserRepository from "../repositories/UserRepository";
+import CreateUserService from "../services/CreateUserService";
 
 const userRouter = Router();
 
-const userRepository = new UserRepository();
-const createUserService = new CreateUserService(userRepository);
-
 userRouter.post("/", async (request, response) => {
-  const data = request.body;
-  try {
-    const user = await createUserService.execute(data);
-    response.send(user);
-  } catch (err) {
-    console.log(err);
-  }
+  const {name, email, telNumber, password} = request.body;
+  
+  const createUser = new CreateUserService();
+
+  const user = await createUser.execute({
+    name,
+    email,
+    telNumber,
+    password,
+  });
+
+  return response.json(user)
 });
 export default userRouter;

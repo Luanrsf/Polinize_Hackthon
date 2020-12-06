@@ -25,6 +25,7 @@ export default class CreateItemCollection1607218204298 implements MigrationInter
                   {
                     name: 'ratting_id',
                     type: 'uuid',
+                    isNullable: true,
                   },
                   {
                     name: 'type',
